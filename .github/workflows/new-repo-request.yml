@@ -1,0 +1,15 @@
+name: New Repo Request
+on:
+  issues:
+    types:
+      - labeled
+      
+jobs:
+  ifRepoIsRequested:
+    if: github.event.label.name == 'Not yet started'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          gh issue edit ${{ github.event.issue.html_url }} --add-assignee manuvanegas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
