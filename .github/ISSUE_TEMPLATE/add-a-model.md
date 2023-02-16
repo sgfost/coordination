@@ -3,7 +3,7 @@ name: Add a Model
 about: 'This issue template can be used when beginning to work on a model from the
   tobefair.org website that does not yet have an issue associated with it. '
 title: "[NAME-YEAR]"
-labels: In progress
+labels: Not yet started
 assignees: kaclaborn, manuvanegas
 
 ---
