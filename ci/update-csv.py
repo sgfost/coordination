@@ -9,7 +9,7 @@ STATUS_LABELS = [
   "Meets FAIR criteria!",
 ]
 
-FILE_PATH = "../data/model_status.csv"
+FILE_PATH = "data/models.csv"
 
 
 class Issue():
