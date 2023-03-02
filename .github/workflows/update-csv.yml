@@ -1,0 +1,33 @@
+name: Update model status data based on issues
+on:
+  issues:
+    types: [created, deleted, labeled]
+      
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "pip"
+      - run: |
+          pip install -r ci/requirements.txt 
+
+      - name: Update model status data
+        run: |
+          gh api /repos/make-models-fair/coordination/issues | python3 ci/update-csv.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update model status data"
+          commit_options: "--no-verify --signoff"
+          file_pattern: "data/models.csv"
