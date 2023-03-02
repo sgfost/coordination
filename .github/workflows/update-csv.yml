@@ -31,10 +31,3 @@ jobs:
           commit_message: "Update model status data"
           commit_options: "--no-verify --signoff"
           file_pattern: "data/models.csv"
-
-      - name: Trigger tobefair.org deploy
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.PAT }}
-          repository: make-models-fair/make-models-fair.github.io
-          event-type: trigger-deploy
